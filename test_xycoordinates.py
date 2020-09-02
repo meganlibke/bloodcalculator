@@ -1,9 +1,19 @@
 # test
 import pytest
-@pytest.mark.parametrize("location, xloc, expected", [
-    ([(1,2) (3,4)], 2, 3),
+@pytest.mark.parametrize("coords, slope, offset", [
+    ([(1,2), (3,4)], 1, 1),
+    ([(9,2),(7,4)], -1, 11),
 ])
-def test_xyline_coordinates(location,xloc,expected):
+def test_xyline_coordinates(coords,slope,offset):
     from xycoordinates import xyline_coordinates
-    result = xyline_coordinates(location, xloc)
-    assert result == expected
+    result = xyline_coordinates(coords)
+    assert result == (slope, offset)
+
+@pytest.mark.parametrize("slope, offset, xloc, yloc", [
+    (1, 1, 2, 3),
+    (-1, 11, 8, 3),
+])
+def test_new_location(slope,offset,xloc,yloc):
+    from xycoordinates import new_location
+    result = new_location(slope,offset,xloc)
+    assert result == yloc
