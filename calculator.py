@@ -24,11 +24,11 @@ def HDL_input():
 
 def HDL_check(HDL):
     if HDL>=60:
-        print("HDL is normal")
+        return "Normal"
     elif 40 <= HDL < 60:
-        return "HDL is borderline low"
+        return "Borderline Low"
     elif HDL < 40:
-        return "HDL is low"
+        return "Low"
     else:
         return "Error: input a number"
 
